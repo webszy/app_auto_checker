@@ -1,0 +1,28 @@
+{
+  "name": "auto_checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production node ./src/index.js",
+    "dev": "nodemon ./src/index.js"
+  },
+  "repository": "https://github.com/webszy/app_auto_checker",
+  "private": true,
+  "keywords": [],
+  "author": "webszy",
+  "license": "MSI",
+  "dependencies": {
+    "await-to-js": "2.1.1",
+    "express": "4.17.1",
+    "helmet": "3.21.2",
+    "lowdb": "1.0.0",
+    "node-schedule": "1.3.2",
+    "request": "2.88.0",
+    "request-promise": "4.2.5"
+  },
+  "devDependencies": {
+    "cross-env": "6.0.3"
+  }
+}
