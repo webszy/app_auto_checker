@@ -82,10 +82,24 @@ app.post('/task', async (req, res) => {
       return
     }
   }
-  if (appName.length === 0) {
+    if (!appName || appName.length === 0) {
     res.json({
       code: 1,
       msg: '请输入appName'
+    })
+    return
+  }
+  if (!bundleId || bundleId.length === 0) {
+    res.json({
+      code: 1,
+      msg: '请输入bundleId'
+    })
+    return
+  }
+  if (!platform || platform.length === 0) {
+    res.json({
+      code: 1,
+      msg: '请输入platform'
     })
     return
   }
