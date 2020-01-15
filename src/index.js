@@ -39,18 +39,23 @@ app.get('/', (req, res) => {
 })
 // 查询数据
 app.get('/list', (req, res) => {
-  if (![undefined, 'undefined', 0, 1].includes(req.query.status)) {
+  if (![undefined, 'undefined', '0', '1'].includes(req.query.status)) {
     res.send('wrong request params')
     return
   }
-  const status = parseInt(req.query.status)
   let data = null
-  if (status === -1 || !req.query.status) {
+  if (!req.query.status) {
     // 查询全部
     data = db.getState()
   } else {
     // 查询其他状态
-    data = db.get('appList').filter({ status }).value()
+    const status = parseInt(req.query.status)
+    const applist = db.get('appList').filter({ status }).value()
+    const lastUpdate = db.get('lastUpdate').value()
+    data = {
+      lastUpdate,
+      applist
+    }
   }
   if (data) {
     res.json(data)
