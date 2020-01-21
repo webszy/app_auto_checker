@@ -7,5 +7,6 @@ COPY . .
 
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install
+RUN npm install cross-env -g
 EXPOSE 3000
 CMD [ "pm2-runtime", "start", "ecosystem.config.js" ]

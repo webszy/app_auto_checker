@@ -1,4 +1,5 @@
-const db = require('../db')
+const db = require('./db')
+const env = process.env.NODE_ENV
 const parseTime = function (time, cFormat) {
   if (arguments.length === 0) {
     return null
@@ -10,6 +11,10 @@ const parseTime = function (time, cFormat) {
   } else {
     if (('' + time).length === 10) time = parseInt(time) * 1000
     date = new Date(time)
+  }
+  if (env === 'production') {
+    const timstamp = date.getTime()
+    date.setTime(timstamp + 8 * 1000 * 60 * 60) // 转化为中国时间
   }
   const formatObj = {
     y: date.getFullYear(),
@@ -46,9 +51,16 @@ const newAppInfo = function (id, bundleId, platform, appName) {
   }
   return appInfo
 }
-
+const waitSeocond = second => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve && resolve(true)
+    }, second * 1000)
+  })
+}
 module.exports = {
   parseTime,
   newAppInfo,
+  waitSeocond,
   db
 }

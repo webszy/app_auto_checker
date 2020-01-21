@@ -12,9 +12,13 @@ if you didn't install nodemon and pm2 ,please install it on global
 > Please create the JSON file  on /src/db ,named DATA.json,content is like exmaple.json
 
 ## run the app on develop
+会自动设置代理，默认地址为`http://127.0.0.1:8118`,具体请修改config.js
 > npm run dev
 
 ## run the app on production 
+
+由于中众所周知的原因，国内无法连接谷歌和美国appStore,因此不建议本地运行production模式
+
 > npm start
 
 ## run the app production and backend
@@ -22,9 +26,13 @@ if you didn't install nodemon and pm2 ,please install it on global
 
 ## deploy the app by docker
 run the app root folder
-+ sudo docker build -t auto_checker .
++ `sudo docker build -t app_auto_checker .`
 
-+ sudo  docker run -p 8085:3000 -d --restart=always  auto_checker
++ `sudo  docker run -p 8085:3000 -d --restart=always  app_auto_checker`
+
++ 挂载外部文件夹以保存db `sudo docker run -it -v /opt/gpower/server/appserver/docker/app_auto_checker/db:/usr/src/app/db -p 8085:3000 -d --restart=always  app_auto_checker`
+
++ 测试是否部署成功 `curl http://172.31.43.169:8085/list`
 
 # 对接飞书消息机器人发送通知
 > 详见[飞书文档](https://getfeishu.cn/hc/zh-cn/articles/360024984973)
