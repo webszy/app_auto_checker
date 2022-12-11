@@ -15,7 +15,7 @@
   "license": "MSI",
   "dependencies": {
     "await-to-js": "2.1.1",
-    "express": "4.17.1",
+    "express": "4.17.3",
     "helmet": "3.21.2",
     "lowdb": "1.0.0",
     "node-schedule": "1.3.2",
